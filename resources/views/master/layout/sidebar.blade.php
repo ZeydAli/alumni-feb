@@ -11,11 +11,11 @@
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
+        {{-- <div class="image">
           <img src="/lte/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
+        </div> --}}
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{ auth()->user()->name }}</a>
         </div>
       </div>
 
@@ -23,7 +23,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="{{ url ('/admin')}}" class="nav-link">
+            <a href="{{ url ('/admin')}}" class="nav-link {{ Request::is('admin') ? 'active' : '' }}">
               <i class="nav-icon far fa-image"></i>
               <p>
                 User
@@ -31,7 +31,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="v{{ url ('/admin/alumni')}}" class="nav-link">
+            <a href="{{ url ('/admin/alumni')}}" class="nav-link {{ Request::is('admin/alumni*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Alumni
@@ -51,6 +51,17 @@
           
         </ul>
       </nav>
+
+      @auth
+          @if(auth()->user()->role == 'User')
+              <div class="nav-item">
+                  <form class="w-100" action="/logout" method="post">
+                      @csrf
+                      <button class="nav-link" type="submit" style="color:white; background:transparent">Logout</button>
+                  </form>
+              </div>
+          @endif
+      @endauth
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->

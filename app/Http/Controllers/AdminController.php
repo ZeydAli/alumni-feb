@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
     public function index(){
-        return view('master.dashboard.user');
-    }
-    public function alumni(){
-        return view('master.dashboard.alumni');
+        $users = User::where('role', 'User')->get();
+
+        return view('master.dashboard.user', compact('users'));
     }
 }

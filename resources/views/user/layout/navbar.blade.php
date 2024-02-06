@@ -22,9 +22,24 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url ('/about')}}" style="color:white">Alumni</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url ('/contact')}}" style="color:white">Biodata</a>
-                    </li>
+                    @auth
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url ('/biodata')}}" style="color:white">Biodata</a>
+                        </li>
+                    @endauth
+                    @guest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url ('/login')}}" style="color:white">Login</a>
+                        </li>
+                    @endguest
+                    @auth
+                        <li class="nav-item">
+                            <form class="w-100" action="/logout" method="post">
+                                @csrf
+                                <button class="nav-link" type="submit" style="color:white; background:transparent">Logout</button>
+                            </form>
+                        </li>
+                    @endauth
                 </ul>
             </div>
             

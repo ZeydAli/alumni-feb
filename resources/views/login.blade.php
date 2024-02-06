@@ -28,15 +28,19 @@
     <div class="card-body login-card-body">
       <h3 class="login-box-msg">Sign in</h3>
 
-         
+      @if (session()->has('loginError'))
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              {{ session('loginError') }}
+          </div>
+      @endif
 
-      @error('Error')
+      {{-- @error('Error')
           <div class="alert alert-danger" style="text-align: center">
             <span>
                 <strong>{{ $message }}</strong>
             </span>
           </div>
-      @enderror
+      @enderror --}}
 
  {{-- Autentications --}}
       <form action="/login" method="post" autocomplete="off">
@@ -74,13 +78,6 @@
   </div>
 </div>
 <!-- /.login-box -->
-
-<!-- jQuery -->
-<script src="/lte/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="/lte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="/lte/dist/js/adminlte.min.js"></script>
 
 </body>
 </html>

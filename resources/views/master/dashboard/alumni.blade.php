@@ -199,21 +199,23 @@ to get the desired effect
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>
-                      <img src="/lte/dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
-                      Perfect Item
-                    </td>
-                    <td>$199 USD</td>
-                    <td>
-                      <a href="#" class="text-muted">
-                        <i class="fas fa-edit"></i>
-                      </a>
-                      <a href="#" class="text-muted" style="padding-left: 15px">
-                        <i class="fas fa-trash"></i>
-                      </a>
-                    </td>
-                  </tr>
+                  @foreach($users as $user)
+                    <tr>
+                      <td>
+                        <img src="/lte/dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
+                        {{ $user->name }}
+                      </td>
+                      <td>{{ $user->email }}</td>
+                      <td>
+                        <a href="#" class="text-muted">
+                          <i class="fas fa-edit"></i>
+                        </a>
+                        <a href="#" class="text-muted" style="padding-left: 15px">
+                          <i class="fas fa-trash"></i>
+                        </a>
+                      </td>
+                    </tr>
+                  @endforeach
                   </tbody>
                 </table>
               </div>

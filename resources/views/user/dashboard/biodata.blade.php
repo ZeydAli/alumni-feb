@@ -1,4 +1,5 @@
 @include('user.layout.header')
+{{-- @dd($user) --}}
 <body class="bg-light">
     @include('user.layout.navbar')
 
@@ -40,32 +41,32 @@
             <form class="col-md-9 m-auto" method="post" role="form">
                 <div class="row">
                     <div class="form-group col-md-6 mb-3">
-                        <label for="inputname" ">Name</label>
-                        <input type="text" class="form-control mt-1" id="name" name="name" placeholder="Name">
+                        <label for="inputname">Name</label>
+                        <input type="text" class="form-control mt-1" id="name" name="name" placeholder="Nama" value="{{ old('name', $user->name) }}">
                     </div>
                     <div class="form-group col-md-6 mb-3">
-                        <label for="inputemail" ">Email</label>
-                        <input type="email" class="form-control mt-1" id="email" name="email" placeholder="Email">
+                        <label for="inputemail">Email</label>
+                        <input type="email" class="form-control mt-1" id="email" name="email" placeholder="Email" value="{{ old('email', $user->email) }}">
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="inputsubject" ">No. Handphone</label>
+                    <label for="inputsubject">No. Handphone</label>
                     <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="No. Handphone">
                 </div>
                 <div class="mb-3">
-                    <label for="inputsubject" ">Departemen</label>
+                    <label for="inputsubject">Departemen</label>
                     <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="Departemen">
                 </div>
                 <div class="mb-3">
-                    <label for="inputsubject" ">Prodi</label>
+                    <label for="inputsubject">Prodi</label>
                     <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="Prodi">
                 </div>
                 <div class="mb-3">
-                    <label for="inputsubject" ">Angkatan</label>
+                    <label for="inputsubject">Angkatan</label>
                     <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="Angkatan">
                 </div>
                 <div class="mb-3">
-                    <label for="inputsubject" ">Pekerjaan Saat Ini</label>
+                    <label for="inputsubject">Pekerjaan Saat Ini</label>
                     <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="Pekerjaan Saat Ini">
                 </div>
                 

@@ -24,16 +24,29 @@ class AuthController extends Controller
 
         if(Auth::attempt($credentials)){
             $request -> session()->regenerate();
-            return redirect ('/admin');
+                  
+            $user = Auth::user();
+
+            if ($user->role === 'Admin') {
+                return redirect('/user');
+            } else if ($user->role === 'User') {
+                return redirect('/user');
+            }
         }
         
         return back()->withErrors([
-            'Error' => 'email atau kata sandi salah'
+            'Error' => 'Email atau kata sandi salah'
         ]);
     }
 
 
-    public function logout(){
+    public function logout(Request $request){
+        Auth::logout();
 
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }
