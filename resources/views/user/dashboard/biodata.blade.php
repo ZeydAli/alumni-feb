@@ -55,11 +55,23 @@
                 </div>
                 <div class="mb-3">
                     <label for="inputsubject">Departemen</label>
-                    <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="Departemen">
+                    <select class="form-control mt-1" id="subject" name="subject">
+                        <option value="" disabled selected>Mohon Pilih</option>
+                        <option value="Ilmu Ekonomi">Departemen Ilmu Ekonomi</option>
+                        <option value="Manajemen">Departemen Manajemen</option>
+                        <option value="Akuntansi">Departemen Akuntansi</option>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="inputsubject">Prodi</label>
-                    <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="Prodi">
+                    <select class="form-control mt-1" id="subject" name="subject">
+                        <option value="" disabled selected>Mohon Pilih</option>
+                        <option value="Ekonomi Pembangunan">Ekonomi Pembangunan</option>
+                        <option value="Ekonomi Islam">Ekonomi Islam</option>
+                        <option value="Ekonomi, Keuangan, dan Perbankan">Ekonomi, Keuangan, dan Perbankan</option>
+                        <option value="Kewirausahaan">Kewirausahaan</option>
+                        <option value="Akuntansi">Akuntansi</option>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="inputsubject">Angkatan</label>
