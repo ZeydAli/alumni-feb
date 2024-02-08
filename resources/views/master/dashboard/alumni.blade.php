@@ -199,13 +199,13 @@ to get the desired effect
                   </tr>
                   </thead>
                   <tbody>
-                  @foreach($users as $user)
+                  @foreach($alumni as $alumnus)
                     <tr>
                       <td>
                         <img src="/lte/dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
-                        {{ $user->name }}
+                        {{ $alumnus->name }}
                       </td>
-                      <td>{{ $user->email }}</td>
+                      <td>{{ $alumnus->email }}</td>
                       <td>
                         <a href="#" class="text-muted">
                           <i class="fas fa-edit"></i>

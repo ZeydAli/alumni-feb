@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('data_alumni', function (Blueprint $table) {
+        Schema::create('alumni', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
             $table->string('name');
             $table->string('email')->unique();
             $table->string('no_hp')->nullable();
-            $table->string('departemen')->nullable();
-            $table->string('prodi')->nullable();
-            $table->string('angkatan')->nullable();
-            $table->string('pekerjaan_saat_ini')->nullable();
+            $table->string('departemen');
+            $table->string('prodi');
+            $table->integer('angkatan');
+            $table->string('pekerjaan')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('data_alumni');
+        Schema::dropIfExists('alumni');
     }
 };

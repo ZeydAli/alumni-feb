@@ -23,9 +23,11 @@
                         <a class="nav-link" href="{{ url ('/about')}}" style="color:white">Alumni</a>
                     </li>
                     @auth
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url ('/biodata')}}" style="color:white">Biodata</a>
-                        </li>
+                        @if(auth()->user()->role == "Alumni")
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url ('/biodata')}}" style="color:white">Biodata</a>
+                            </li>
+                        @endif
                     @endauth
                     @guest
                         <li class="nav-item">

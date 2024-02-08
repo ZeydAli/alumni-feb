@@ -1,5 +1,5 @@
 @include('user.layout.header')
-{{-- @dd($user) --}}
+{{-- @dd($biodata) --}}
 <body class="bg-light">
     @include('user.layout.navbar')
 
@@ -34,52 +34,74 @@
     <!-- Start Map -->
  
     <!-- Ena Map -->
+    @if (session('storeSuccess'))
+        <div class="w-100 d-flex justify-content-center">
+            <div id="alert-success" class="alert alert-success w-50">
+                {{ session('storeSuccess') }}
+            </div>
+        </div>
+    @endif
+
+    @if (session('updateSuccess'))
+        <div class="w-100 d-flex justify-content-center">
+            <div id="alert-success" class="alert alert-success w-50">
+                {{ session('updateSuccess') }}
+            </div>
+        </div>
+    @endif
 
     <!-- Start Contact -->
     <div class="container py-5 bg-light" >
         <div class="row py-5">
-            <form class="col-md-9 m-auto" method="post" role="form">
+            <form class="col-md-9 m-auto" action="/biodata" method="POST" role="form">
+                {{-- @if ($biodata) --}}
+                @if($biodata)
+                    @method('PUT')
+                @endif
+                {{-- @endif --}}
+                @csrf
+                <input type="hidden" name="user_id" value="{{ $user->id}}">
                 <div class="row">
                     <div class="form-group col-md-6 mb-3">
                         <label for="inputname">Name</label>
-                        <input type="text" class="form-control mt-1" id="name" name="name" placeholder="Nama" value="{{ old('name', $user->name) }}">
+                        <input type="text" class="form-control mt-1" id="name" name="name" placeholder="Nama" value="{{ old('name', $user->name) }}" required>
                     </div>
                     <div class="form-group col-md-6 mb-3">
-                        <label for="inputemail">Email</label>
-                        <input type="email" class="form-control mt-1" id="email" name="email" placeholder="Email" value="{{ old('email', $user->email) }}">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control mt-1" id="email" name="email" placeholder="Email" value="{{ old('email', $user->email) }}" required>
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="inputsubject">No. Handphone</label>
-                    <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="No. Handphone">
+                    <label for="no_hp">No. Handphone</label>
+                    <input type="number" class="form-control mt-1" id="no_hp" name="no_hp" placeholder="No. Handphone" value="{{ isset($biodata) ? old('no_hp', $biodata->no_hp) : '' }}">
                 </div>
                 <div class="mb-3">
-                    <label for="inputsubject">Departemen</label>
-                    <select class="form-control mt-1" id="subject" name="subject">
+                    <label for="departemen">Departemen</label>
+                    <select class="form-control mt-1" id="departemen" name="departemen" required>
                         <option value="" disabled selected>Mohon Pilih</option>
-                        <option value="Ilmu Ekonomi">Departemen Ilmu Ekonomi</option>
-                        <option value="Manajemen">Departemen Manajemen</option>
-                        <option value="Akuntansi">Departemen Akuntansi</option>
+                        <option value="Ilmu Ekonomi" {{ isset($biodata) ? (($biodata->departemen === 'Ilmu Ekonomi') ? 'selected' : '') : '' }}>Departemen Ilmu Ekonomi</option>
+                        <option value="Manajemen" {{ isset($biodata) ? (($biodata->departemen === 'Manajemen') ? 'selected' : '') : '' }}>Departemen Manajemen</option>
+                        <option value="Akuntansi" {{ isset($biodata) ? (($biodata->departemen === 'Akuntansi') ? 'selected' : '') : '' }}>Departemen Akuntansi</option>
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="inputsubject">Prodi</label>
-                    <select class="form-control mt-1" id="subject" name="subject">
+                    <label for="prodi">Prodi</label>
+                    <select class="form-control mt-1" id="prodi" name="prodi" required>
                         <option value="" disabled selected>Mohon Pilih</option>
-                        <option value="Ekonomi Pembangunan">Ekonomi Pembangunan</option>
-                        <option value="Ekonomi Islam">Ekonomi Islam</option>
-                        <option value="Ekonomi, Keuangan, dan Perbankan">Ekonomi, Keuangan, dan Perbankan</option>
-                        <option value="Kewirausahaan">Kewirausahaan</option>
-                        <option value="Akuntansi">Akuntansi</option>
+                        <option value="Ekonomi Pembangunan" {{ isset($biodata) ? (($biodata->prodi === 'Ekonomi Pembangunan') ? 'selected' : '') : '' }}>Ekonomi Pembangunan</option>
+                        <option value="Ekonomi Islam" {{ isset($biodata) ? (($biodata->prodi === 'Ekonomi Islam') ? 'selected' : '') : '' }}>Ekonomi Islam</option>
+                        <option value="Ekonomi, Keuangan, dan Perbankan" {{ isset($biodata) ? (($biodata->prodi === 'Ekonomi, Keuangan, dan Perbankan') ? 'selected' : '') : '' }}>Ekonomi, Keuangan, dan Perbankan</option>
+                        <option value="Kewirausahaan" {{ isset($biodata) ? (($biodata->prodi === 'Kewirausahaan') ? 'selected' : '') : '' }}>Kewirausahaan</option>
+                        <option value="Akuntansi" {{ isset($biodata) ? (($biodata->prodi === 'Akuntansi') ? 'selected' : '') : '' }}>Akuntansi</option>
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="inputsubject">Angkatan</label>
-                    <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="Angkatan">
+                    <label for="angkatan">Angkatan</label>
+                    <input type="number" class="form-control mt-1" id="angkatan" name="angkatan" placeholder="Angkatan" value="{{ isset($biodata) ? old('angkatan', $biodata->angkatan) : '' }}" required>
                 </div>
                 <div class="mb-3">
-                    <label for="inputsubject">Pekerjaan Saat Ini</label>
-                    <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="Pekerjaan Saat Ini">
+                    <label for="pekerjaan">Pekerjaan Saat Ini</label>
+                    <input type="text" class="form-control mt-1" id="pekerjaan" name="pekerjaan" placeholder="Pekerjaan Saat Ini" value="{{ isset($biodata) ? old('pekerjaan', $biodata->pekerjaan) : '' }}" autocomplete="off">
                 </div>
                 
                 <div class="row">

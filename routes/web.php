@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AlumniController;
+use App\Http\Controllers\AlumnusController;
 use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Master\UserController;
@@ -46,7 +46,9 @@ Route::get('/email', function(){
     return view('generate.email.register_email');
 });
 
-Route::get('/biodata', [BiodataController::class, 'index'])->middleware('auth');
+Route::get('/biodata', [BiodataController::class, 'index'])->middleware(['auth', 'alumni']);
+Route::post('/biodata', [BiodataController::class, 'store'])->middleware(['auth', 'alumni']);
+Route::put('/biodata', [BiodataController::class, 'update'])->middleware(['auth', 'alumni']);
 
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
@@ -55,9 +57,9 @@ Route::get('/login', [LoginController::class, 'index'])->name('login')->middlewa
 Route::post('/login', [LoginController::class, 'authenticate'])->middleware('guest');
 Route::post('logout', [LoginController::class, 'logout'])->middleware('auth');
 
-Route::get('/admin', [AdminController::class, 'index'])->middleware('auth');
+Route::get('/admin', [AdminController::class, 'index'])->middleware(['auth', 'admin']);
 
-Route::get('/admin/alumni', [AlumniController::class, 'index'])->middleware('auth');
+Route::get('/admin/alumni', [AlumnusController::class, 'index'])->middleware(['auth', 'admin']);
 
 // Admin routes
 // Auth
