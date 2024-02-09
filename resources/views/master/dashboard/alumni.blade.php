@@ -181,44 +181,50 @@ to get the desired effect
 
             <div class="card">
               <div class="card-header border-0">
-                <h3 class="card-title">User</h3>
+                <h3 class="card-title">Alumni</h3>
                 <div class="card-tools">
                   <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                        Add User
+                        Add Alumni
                       </button>
                 </div>
               </div>
+              @if($alumni->count() > 0) 
               <div class="card-body table-responsive p-0">
                 <table class="table table-striped table-valign-middle">
                   <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Action</th>
-                  </tr>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Action</th>
+                    </tr>
                   </thead>
                   <tbody>
-                  @foreach($alumni as $alumnus)
-                    <tr>
-                      <td>
-                        <img src="/lte/dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
-                        {{ $alumnus->name }}
-                      </td>
-                      <td>{{ $alumnus->email }}</td>
-                      <td>
-                        <a href="#" class="text-muted">
-                          <i class="fas fa-edit"></i>
-                        </a>
-                        <a href="#" class="text-muted" style="padding-left: 15px">
-                          <i class="fas fa-trash"></i>
-                        </a>
-                      </td>
-                    </tr>
-                  @endforeach
+                    @foreach($alumni as $alumnus)
+                      <tr>
+                        <td>
+                          <img src="/lte/dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
+                          {{ $alumnus->name }}
+                        </td>
+                        <td>{{ $alumnus->email }}</td>
+                        <td>
+                          <a href="#" class="text-muted">
+                            <i class="fas fa-edit"></i>
+                          </a>
+                          <a href="#" class="text-muted" style="padding-left: 15px">
+                            <i class="fas fa-trash"></i>
+                          </a>
+                        </td>
+                      </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>
+              @else
+                <div class="text-center">
+                  <p>Belum ada data.</p>
+                </div>
+              @endif
             </div>
             <!-- /.card -->
           </div>
@@ -271,7 +277,7 @@ to get the desired effect
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Add User</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">Add Alumni</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

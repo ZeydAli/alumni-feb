@@ -173,6 +173,30 @@ to get the desired effect
     </div>
     <!-- /.content-header -->
 
+    @if (session('storeSuccess'))
+        <div class="w-100 d-flex justify-content-center">
+            <div id="alert-success" class="alert alert-success w-50">
+                {{ session('storeSuccess') }}
+            </div>
+        </div>
+    @endif
+
+    @if (session('updateSuccess'))
+        <div class="w-100 d-flex justify-content-center">
+            <div id="alert-success" class="alert alert-success w-50">
+                {{ session('updateSuccess') }}
+            </div>
+        </div>
+    @endif
+
+    @if (session('deleteSuccess'))
+        <div class="w-100 d-flex justify-content-center">
+            <div id="alert-success" class="alert alert-success w-50">
+                {{ session('deleteSuccess') }}
+            </div>
+        </div>
+    @endif
+
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
@@ -185,9 +209,9 @@ to get the desired effect
                 <h3 class="card-title">User</h3>
                 <div class="card-tools">
                   <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                        Add User
-                      </button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleAddModalCenter">
+                      Add User
+                    </button>
                 </div>
               </div>
               <div class="card-body table-responsive p-0">
@@ -203,17 +227,25 @@ to get the desired effect
                   @foreach($users as $user)
                     <tr>
                       <td>
-                        <img src="/lte/dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
                         {{ $user->name }}
                       </td>
                       <td>{{ $user->email }}</td>
-                      <td>
-                        <a href="#" class="text-muted">
+                      <td class="d-flex align-items-center">
+                        <a type="button"  data-toggle="modal" data-target="#exampleEditModalCenter" class="text-muted edit-user"
+                          data-id="{{ $user->id }}"
+                          data-name="{{ $user->name }}"
+                          data-email="{{ $user->email }}"
+                        >
                           <i class="fas fa-edit"></i>
                         </a>
-                        <a href="#" class="text-muted" style="padding-left: 15px">
-                          <i class="fas fa-trash"></i>
-                        </a>
+                        <form action="/admin/{{ $user->id }}" method="POST"
+                          onsubmit="return confirm('Apakah anda yakin ingin menghapus User ini?')">
+                          @csrf
+                          @method('DELETE')
+                          <button type="submit" class="text-muted border-0 text-decoration-none bg-transparent">
+                            <i class="fas fa-trash"></i>
+                          </button>
+                        </form>
                       </td>
                     </tr>
                   @endforeach
@@ -267,28 +299,21 @@ to get the desired effect
 </html>
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Add User</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            @error('Error')
-            <div class="alert alert-danger" style="text-align: center">
-              <span>
-                  <strong>{{ $message }}</strong>
-              </span>
-            </div>
-        @enderror
+<!-- Modal Tambah User-->
+<div class="modal fade" id="exampleAddModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add User</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
   
-   {{-- Autentications --}}
-      <form method="post">
-            @csrf
+        {{-- Autentications --}}
+        <form method="POST" action="/admin">
+          @csrf
           <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Name" name="name">
             <div class="input-group-append">
@@ -313,21 +338,105 @@ to get the desired effect
               </div>
             </div>
           </div>
-          <div class="input-group mb-3">
-            <input type="password" class="form-control" placeholder="Role" name="role">
+          {{-- <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Role" name="role">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
               </div>
             </div>
-          </div>
+          </div> --}}
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary">Save changes</button>
           </div>
         </form>
   
-        </div>
       </div>
     </div>
   </div>
+</div>
+
+<!-- Modal Edit User-->
+<div class="modal fade" id="exampleEditModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Edit User</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+  
+        {{-- Autentications --}}
+        <form method="post" id="editForm">
+          @method('PUT')
+          @csrf
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Name" name="name" id="editName">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Email" name="email" id="editEmail">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input type="password" class="form-control" placeholder="Masukkan password baru" name="password">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+          {{-- <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Role" name="role" id="editRole">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div> --}}
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </form>
+  
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      // Handle click event on "Edit" link
+      var editUserLinks = document.querySelectorAll('.edit-user');
+
+      editUserLinks.forEach(function (link) {
+          link.addEventListener('click', function () {
+              // Retrieve user data from the data attributes
+              var userId = this.getAttribute('data-id');
+              var userName = this.getAttribute('data-name');
+              var userEmail = this.getAttribute('data-email');
+
+              // Set the values in the modal form
+              document.getElementById('editName').value = userName;
+              document.getElementById('editEmail').value = userEmail;
+              // Set values for other form fields as needed
+
+              // Update the form action URL to include the user ID
+              document.getElementById('editForm').action = '/admin/' + userId;
+          });
+      });
+  });
+</script>
+
