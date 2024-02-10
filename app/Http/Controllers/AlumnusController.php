@@ -33,7 +33,7 @@ class AlumnusController extends Controller
         $alumni = $query->paginate(10);
         // $alumni = Alumnus::all();
         
-        return view('master.dashboard.alumni', compact('alumni'));
+        return view('master.dashboard.alumni', compact('alumni', 'search', 'angkatanSearch'));
     }
 
     public function destroy($id)

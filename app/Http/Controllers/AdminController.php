@@ -23,7 +23,7 @@ class AdminController extends Controller
 
         $users = $query->paginate(10);
 
-        return view('master.dashboard.user', compact('users'));
+        return view('master.dashboard.user', compact('users', 'search'));
     }
 
     public function store(Request $request)

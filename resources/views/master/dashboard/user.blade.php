@@ -167,6 +167,10 @@ to get the desired effect
               </div>
             </div>
             <!-- /.card -->
+
+            <!-- PAGINASI -->
+            {{ $users->appends(['search' => $search])->links() }}
+
           </div>
           <!-- /.col-md-6 -->
         </div>

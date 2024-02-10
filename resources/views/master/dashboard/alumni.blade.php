@@ -165,6 +165,9 @@ to get the desired effect
               @endif
             </div>
             <!-- /.card -->
+
+            <!-- PAGINASI -->
+            {{ $alumni->appends(['search' => $search, 'angkatanSearch' => $angkatanSearch])->links() }}
           </div>
           <!-- /.col-md-6 -->
         </div>
