@@ -63,8 +63,6 @@ Route::put('/admin/{id}', [AdminController::class, 'update'])->middleware(['auth
 Route::delete('/admin/{id}', [AdminController::class, 'destroy'])->middleware(['auth', 'admin']);
 
 Route::get('/admin/alumni', [AlumnusController::class, 'index'])->middleware(['auth', 'admin']);
-Route::post('/admin/alumni', [AlumnusController::class, 'store'])->middleware(['auth', 'admin']);
-Route::put('/admin/alumni/{id}', [AlumnusController::class, 'update'])->middleware(['auth', 'admin']);
 Route::delete('/admin/alumni/{id}', [AlumnusController::class, 'destroy'])->middleware(['auth', 'admin']);
 
 // Admin routes

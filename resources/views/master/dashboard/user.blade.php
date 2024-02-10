@@ -105,17 +105,17 @@ to get the desired effect
             <!-- /.card -->
 
             <div>
-              <form class="form-inline" style="padding-bottom: 1rem; flex-direction:row-reverse">
+              <form method="GET" action="/admin" class="form-inline" style="padding-bottom: 1rem; flex-direction:row-reverse">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search...">
+                    <input type="text" name="search" class="form-control" placeholder="Search..." value="{{ request('search') }}">
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button">
+                        <button class="btn btn-outline-secondary" type="submit">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
                 </div>
-            </form>
-              </div>
+              </form>
+            </div>
 
             <div class="card">
               <div class="card-header border-0">
@@ -133,7 +133,7 @@ to get the desired effect
                   <tr>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Action</th>
+                    <th>Aksi</th>
                   </tr>
                   </thead>
                   <tbody>

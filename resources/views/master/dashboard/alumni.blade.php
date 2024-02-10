@@ -71,6 +71,14 @@ to get the desired effect
     </div>
     <!-- /.content-header -->
 
+    @if (session('deleteSuccess'))
+        <div class="w-100 d-flex justify-content-center">
+            <div id="alert-success" class="alert alert-success w-50">
+                {{ session('deleteSuccess') }}
+            </div>
+        </div>
+    @endif
+
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
@@ -79,36 +87,36 @@ to get the desired effect
             <!-- /.card -->
             
             <div>
-            <form class="form-inline" style="padding-bottom: 1rem; flex-direction:row-reverse">
-              <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Search...">
+              <form method="GET" action="/admin/alumni" class="form-inline" style="padding-bottom: 1rem; flex-direction:row-reverse">
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control" placeholder="Search..." value="{{ request('search') }}">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="input-group" style="padding-right: 1rem;" >
+                  <input type="text" name="angkatanSearch" class="form-control" placeholder="Angkatan" value="{{ request('angkatanSearch') }}">
                   <div class="input-group-append">
-                      <button class="btn btn-outline-secondary" type="button">
+                      <button class="btn btn-outline-secondary" type="submit">
                           <i class="fas fa-search"></i>
                       </button>
                   </div>
-              </div>
-              <div class="input-group" style="padding-right: 1rem;" >
-                <input type="text" class="form-control" placeholder="Angkatan">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button">
-                        <i class="fas fa-search"></i>
-                    </button>
                 </div>
-            </div>
-          </form>
+              </form>
             </div>
 
 
             <div class="card">
               <div class="card-header border-0">
                 <h3 class="card-title">Alumni</h3>
-                <div class="card-tools"> 
+                {{-- <div class="card-tools"> 
                   <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                         Add Alumni
                       </button>
-                </div>
+                </div> --}}
               </div>
               @if($alumni->count() > 0) 
               <div class="card-body table-responsive p-0">
@@ -121,23 +129,29 @@ to get the desired effect
                       <th>Departemen</th>
                       <th>Prodi</th>
                       <th>Angkatan</th>
+                      <th>Pekerjaan</th>
+                      <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
                     @foreach($alumni as $alumnus)
                       <tr>
-                        <td>
-                          <img src="/lte/dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
-                          {{ $alumnus->name }}
-                        </td>
+                        <td>{{ $alumnus->name }}</td>
                         <td>{{ $alumnus->email }}</td>
+                        <td>{{ $alumnus->no_hp ?? '-' }}</td>
+                        <td>{{ $alumnus->departemen }}</td>
+                        <td>{{ $alumnus->prodi }}</td>
+                        <td>{{ $alumnus->angkatan }}</td>
+                        <td>{{ $alumnus->pekerjaan ?? '-' }}</td>
                         <td>
-                          <a href="#" class="text-muted">
-                            <i class="fas fa-edit"></i>
-                          </a>
-                          <a href="#" class="text-muted" style="padding-left: 15px">
-                            <i class="fas fa-trash"></i>
-                          </a>
+                          <form action="/admin/alumni/{{ $alumnus->id }}" method="POST"
+                            onsubmit="return confirm('Apakah anda yakin ingin menghapus Alumni ini?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-muted border-0 text-decoration-none bg-transparent">
+                              <i class="fas fa-trash"></i>
+                            </button>
+                          </form>
                         </td>
                       </tr>
                     @endforeach

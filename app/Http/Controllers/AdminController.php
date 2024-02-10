@@ -9,8 +9,19 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-    public function index(){
-        $users = User::where('role', 'User')->get();
+    public function index(Request $request)
+    {
+        $search = $request->input('search');
+        $query = User::where('role', 'User');
+
+        if ($search) {
+            $query->where(function ($query) use ($search) {
+                $query->where('name', 'LIKE', '%' . $search . '%')
+                    ->orWhere('email', 'LIKE', '%' . $search . '%');
+            });
+        }
+
+        $users = $query->paginate(10);
 
         return view('master.dashboard.user', compact('users'));
     }
@@ -37,7 +48,7 @@ class AdminController extends Controller
     
             $user->save();
     
-            return redirect('/admin')->with('storeSuccess', 'Data user baru berhasil dibuat.');
+            return redirect('/admin')->with('storeSuccess', 'Data User baru berhasil dibuat.');
         } catch (\Exception $e) {
             DB::rollback();
             dd($e->getMessage());
@@ -78,7 +89,7 @@ class AdminController extends Controller
     
             $user->save();
     
-            return redirect('/admin')->with('updateSuccess', 'Data user baru berhasil diperbarui.');
+            return redirect('/admin')->with('updateSuccess', 'Data User berhasil diperbarui.');
         } catch (\Exception $e) {
             DB::rollback();
             dd($e->getMessage());
@@ -95,7 +106,7 @@ class AdminController extends Controller
 
             $user->delete();
     
-            return redirect('/admin')->with('deleteSuccess', 'Data user baru berhasil dihapus.');
+            return redirect('/admin')->with('deleteSuccess', 'Data User berhasil dihapus.');
         } catch (\Exception $e) {
             DB::rollback();
             dd($e->getMessage());
