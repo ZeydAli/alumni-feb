@@ -88,6 +88,14 @@ to get the desired effect
                       </button>
                   </div>
               </div>
+              <div class="input-group" style="padding-right: 1rem;" >
+                <input type="text" class="form-control" placeholder="Angkatan">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
           </form>
             </div>
 
@@ -109,7 +117,10 @@ to get the desired effect
                     <tr>
                       <th>Name</th>
                       <th>Email</th>
-                      <th>Action</th>
+                      <th>No. Handphone</th>
+                      <th>Departemen</th>
+                      <th>Prodi</th>
+                      <th>Angkatan</th>
                     </tr>
                   </thead>
                   <tbody>
