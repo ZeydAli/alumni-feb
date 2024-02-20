@@ -10,7 +10,7 @@
         </a>   
 
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon" style="color: white"></span>
         </button>
 
         <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
@@ -20,7 +20,7 @@
                         <a class="nav-link" href="{{ url ('/')}}" style="color:white">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url ('/about')}}" style="color:white">Alumni</a>
+                        <a class="nav-link" href="{{ url ('/alumni')}}" style="color:white">Alumni</a>
                     </li>
                     @auth
                         @if(auth()->user()->role == "Alumni")

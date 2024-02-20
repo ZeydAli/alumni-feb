@@ -39,7 +39,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
+            <a href="{{ url ('/admin/chart')}}" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Charts

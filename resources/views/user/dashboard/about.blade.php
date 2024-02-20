@@ -25,9 +25,9 @@
         <div class="container">
             <div class="row align-items-center py-5">
                 <div class="col-md-8 text-white">
-                    <h1>About Us</h1>
+                    <h1>Informasi Alumni</h1>
                     <h4>
-                        We are a company that works in the automotive sector, especially motorbikes. We can repair or modify motorbikes according to your wishes with existing regulations. and we also provide the spare parts you need. has been established since 2020 and is still proven in working on client requests.
+                        Dihalaman ini anda dapat menemukan informasi alumni yang mungkin akan diperlukan untuk menghubungi alumni tersebut.
                     </h4>
                 </div>
                 <div class="col-md-4">
@@ -42,9 +42,9 @@
     <section class="container py-5">
         <div class="row text-center pt-5 pb-3">
             <div class="col-lg-6 m-auto">
-                <h1 class="h1">Why Us</h1>
+                <h1 class="h1">Jumlah Alumni</h1>
                 <p>
-                    We are a company that works in the automotive sector, especially motorbikes. We can repair or modify motorbikes according to your wishes with existing regulations. and we also provide the spare parts you need.    
+                    Berikut adalah jumlah alumni disetiap departemen. Anda dapat berkontribusi dengan mendaftar dan mengisi biodata anda setelah login. Khusus untuk alumni dari Fakutltas Ekonomi Dan Bisnis Universitas Brawijaya.
                 </p>
             </div>
         </div>
@@ -52,29 +52,29 @@
 
             <div class="col-md-6 col-lg-3 pb-5">
                 <div class="h-100 py-5 services-icon-wap shadow">
-                    <div class="h1 text-success text-center"><i class="fa fa-truck fa-lg"></i></div>
-                    <h2 class="h5 mt-4 text-center">Delivery Services</h2>
+                    <div class="h1 text-success text-center">{{ $data['total'] }}</i></div>
+                    <h2 class="h5 mt-4 text-center">Umum/Keseluruhan</h2>
                 </div>
             </div>
 
             <div class="col-md-6 col-lg-3 pb-5">
                 <div class="h-100 py-5 services-icon-wap shadow">
-                    <div class="h1 text-success text-center"><i class="fas fa-exchange-alt"></i></div>
-                    <h2 class="h5 mt-4 text-center">Shipping & Return</h2>
+                    <div class="h1 text-success text-center">{{ $data['Manajemen'] }}</i></div>
+                    <h2 class="h5 mt-4 text-center">Manajemen</h2>
                 </div>
             </div>
 
             <div class="col-md-6 col-lg-3 pb-5">
                 <div class="h-100 py-5 services-icon-wap shadow">
-                    <div class="h1 text-success text-center"><i class="fa fa-percent"></i></div>
-                    <h2 class="h5 mt-4 text-center">Promotion</h2>
+                    <div class="h1 text-success text-center">{{ $data['Akuntansi'] }}</i></div>
+                    <h2 class="h5 mt-4 text-center">Akuntansi</h2>
                 </div>
             </div>
 
             <div class="col-md-6 col-lg-3 pb-5">
                 <div class="h-100 py-5 services-icon-wap shadow">
-                    <div class="h1 text-success text-center"><i class="fa fa-user"></i></div>
-                    <h2 class="h5 mt-4 text-center">24 Hours Service</h2>
+                    <div class="h1 text-success text-center">{{ $data['Ilmu Ekonomi'] }}</i></div>
+                    <h2 class="h5 mt-4 text-center">Ilmu Ekonomi</h2>
                 </div>
             </div>
         </div>
@@ -85,100 +85,108 @@
     <section class="bg-light py-5">
         <div class="container my-4">
             <div class="row text-center py-3">
-                <div class="col-lg-6 m-auto">
-                    <h1 class="h1">In Collaboration With</h1>
-                    <p>
-                        We work with related companies to improve your experience when coming to our workshop.
-                    </p>
-                </div>
-                <div class="col-lg-9 m-auto tempaltemo-carousel">
-                    <div class="row d-flex flex-row">
-                        <!--Controls-->
-                        <div class="col-1 align-self-center">
-                            <a class="h1" href="#templatemo-slide-brand" role="button" data-bs-slide="prev">
-                                <i class="text-light fas fa-chevron-left"></i>
-                            </a>
-                        </div>
-                        <!--End Controls-->
+                <div class="card-body table-responsive p-0">
 
-                        <!--Carousel Wrapper-->
-                        <div class="col">
-                            <div class="carousel slide carousel-multi-item pt-2 pt-md-0" id="templatemo-slide-brand" data-bs-ride="carousel">
-                                <!--Slides-->
-                                <div class="carousel-inner product-links-wap" role="listbox">
 
-                                    <!--First slide-->
-                                    <div class="carousel-item active">
-                                        <div class="row">
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_01.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_02.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_03.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_04.png" alt="Brand Logo"></a>
+                  <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <!-- /.card -->
+                
+                                <div style="margin-bottom: 1rem; text-align: center;">
+                                    <form method="GET" action="/alumni" class="form-inline d-inline-block">
+                                        <div class="input-group">
+                                            <input type="text" name="search" class="form-control" placeholder="Search..." value="{{ request('search') }}">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary" type="submit">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!--End First slide-->
-
-                                    <!--Second slide-->
-                                    <div class="carousel-item">
-                                        <div class="row">
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_01.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_02.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_03.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_04.png" alt="Brand Logo"></a>
+                                    </form>
+                
+                                    <form method="GET" action="/alumni" class="form-inline d-inline-block">
+                                        <div class="input-group">
+                                            <input type="text" name="angkatanSearch" class="form-control" placeholder="Angkatan" value="{{ request('angkatanSearch') }}">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary" type="submit">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!--End Second slide-->
-
-                                    <!--Third slide-->
-                                    <div class="carousel-item">
-                                        <div class="row">
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_01.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_02.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_03.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_04.png" alt="Brand Logo"></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--End Third slide-->
-
+                                    </form>
                                 </div>
-                                <!--End Slides-->
+                
+                
+                                <div class="card">
+                                    <div class="card-header border-0">
+                                        <h3 class="card-title">Alumni</h3>
+                                        {{-- <div class="card-tools"> 
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                                                Add Alumni
+                                            </button>
+                                        </div> --}}
+                                    </div>
+                                    @if($alumni->count() > 0) 
+                                    <div class="card-body table-responsive p-0">
+                                        <table class="table table-striped table-valign-middle">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nama</th>
+                                                    <th>Email</th>
+                                                    <th>Departemen</th>
+                                                    <th>Prodi</th>
+                                                    <th>Angkatan</th>
+                                                    <th>Pekerjaan</th>
+                                                    <th>Kategori Pekerjaan</th>
+                
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach($alumni as $alumnus)
+                                                <tr>
+                                                    <td>{{ $alumnus->name }}</td>
+                                                    <td>{{ $alumnus->email }}</td>
+                                                    <td>{{ $alumnus->departemen }}</td>
+                                                    <td>{{ $alumnus->prodi }}</td>
+                                                    <td>{{ $alumnus->angkatan }}</td>
+                                                    <td>{{ $alumnus->pekerjaan ?? '-' }}</td>
+                                                    <td>{{ $alumnus->kategori_pekerjaan ?? '-' }}</td>
+                
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    @else
+                                    <div class="text-center">
+                                        <p>Data tidak ada atau belum terdaftar.</p>
+                                    </div>
+                                    @endif
+                                </div>
+                                <!-- /.card -->
+                
+                                <!-- PAGINASI -->
+                                {{ $alumni->appends(['search' => $search, 'angkatanSearch' => $angkatanSearch])->links() }}
                             </div>
+                            <!-- /.col-md-6 -->
                         </div>
-                        <!--End Carousel Wrapper-->
-
-                        <!--Controls-->
-                        <div class="col-1 align-self-center">
-                            <a class="h1" href="#templatemo-slide-brand" role="button" data-bs-slide="next">
-                                <i class="text-light fas fa-chevron-right"></i>
-                            </a>
-                        </div>
-                        <!--End Controls-->
+                        <!-- /.row -->
                     </div>
+                    <!-- /.container-fluid -->
                 </div>
+                
+
+
+
+
+
+
+
+                  </div>
+           
             </div>
         </div>
     </section>

@@ -24,6 +24,7 @@ class RegisterController extends Controller
     {
         // dd($request);
         $validatedData = $request->validate([
+            'nim' => 'required',
             'name' => 'required|max:255',
             'email' => 'required|email:dns|max:255|unique:users',
             'password' => 'required|min:3|max:255',
@@ -32,6 +33,7 @@ class RegisterController extends Controller
         $validatedData['password'] = Hash::make($validatedData['password']);
 
         $user = new User();
+        $user->nim = $validatedData['nim'];
         $user->name = $validatedData['name'];
         $user->email = $validatedData['email'];
         $user->password = $validatedData['password'];

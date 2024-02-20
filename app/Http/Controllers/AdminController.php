@@ -12,12 +12,13 @@ class AdminController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
-        $query = User::where('role', 'User');
+        $query = User::query();
 
         if ($search) {
             $query->where(function ($query) use ($search) {
                 $query->where('name', 'LIKE', '%' . $search . '%')
-                    ->orWhere('email', 'LIKE', '%' . $search . '%');
+                    ->orWhere('email', 'LIKE', '%' . $search . '%')
+                    ->orWhere('nim', 'LIKE', '%' . $search . '%');
             });
         }
 

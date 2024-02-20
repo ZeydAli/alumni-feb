@@ -1,13 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ChartController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AlumnusController;
 use App\Http\Controllers\BiodataController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\Master\UserController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserAlumniController;
+use App\Http\Controllers\Master\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,17 +24,20 @@ use App\Http\Controllers\RegisterController;
 |
 */
 
-Route::get('/', function () {
-    return view('user.dashboard.home');
-});
+// Route::get('/', function () {
+//     return view('user.dashboard.home');
+// });
+
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'hitungalumni']);
 
 Route::get('/profile', function(){
     return view('user.dashboard.profile');
 });
 
-Route::get('/about', function(){
-    return view('user.dashboard.about');
-});
+// Route::get('/about', function(){
+//     return view('user.dashboard.about');
+// });
 
 Route::get('/product', function(){
     return view('user.dashboard.product');
@@ -65,8 +72,18 @@ Route::delete('/admin/{id}', [AdminController::class, 'destroy'])->middleware(['
 Route::get('/admin/alumni', [AlumnusController::class, 'index'])->middleware(['auth', 'admin']);
 Route::delete('/admin/alumni/{id}', [AlumnusController::class, 'destroy'])->middleware(['auth', 'admin']);
 
+Route::get('/admin/chart', [ChartController::class, 'index'])->middleware(['auth', 'admin']);
+Route::get('/admin/chart', [ChartController::class, 'hitungalumni'])->middleware(['auth', 'admin']);
+// Route::get('/admin/chart', [ChartController::class, 'departemen'])->middleware(['auth', 'admin']);
+
+Route::get('/alumni', [UserAlumniController::class, 'index']);
+// Route::get('/coba', [ApiController::class, 'hitungalumni']);
+
+
+
+
 // Admin routes
-// Auth
+// Auths
 // Route::prefix('login')->group(function () {
 //     Route::get('/', [AuthController::class, 'admin']);
 //     Route::post('/', [AuthController::class, 'login']);

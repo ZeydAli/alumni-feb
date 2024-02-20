@@ -1,4 +1,5 @@
 @include('user.layout.header')
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <body class="bg-light">
   
@@ -36,14 +37,14 @@
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="./assets/img/logo2.png" alt="">
+                            <img class="img-fluid" src="img/logoUB.png" alt="">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left align-self-center">
-                                <h1 class="h1 text-success"><b>BengBengkel</b> Workshop</h1>
-                                <h3 class="h2">We can satisfy your automotive desires</h3>
+                                <h1 class="h1 text-success"><b>Alumni FEB</b></h1>
+                                <h3 class="h2">Mohon register untuk alumni agar dapat mendata alumni</h3>
                                 <p>
-                                    BengBengkel is a automotif company from Indonesia that provides modifications, spare parts and motorbikes. This company was founded in 2022 in Malang by La Phei. Currently, BengBengkel is available in 30 cities in Indonesia.
+                                    Aplikasi ini dibuat untuk mendata alumni yang kemudian data tersebut digunakan dengan semestinya.
                                 </p>
                             </div>
                         </div>
@@ -54,14 +55,14 @@
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="./assets/img/logo2.png" alt="">
+                            <img class="img-fluid" src="img/logoUB.png" alt="">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
-                                <h1 class="h1">Our vissions</h1>
-                                <h3 class="h2">we care you</h3>
+                                <h1 class="h1">Menemukan teman anda</h1>
+                                <h3 class="h2"></h3>
                                 <p>
-                                    Helping to improve the transportation structure in Indonesia, making it easier for people to fulfill their desires for automotive modifications such as spare parts, finished motorbikes, using complete service facilities, and contributing to the prosperity of the lives of mechanics in the future
+                                    Untuk menciptakan ikatan yang kuat anda dapat menemukan no. telepon untuk saling menghubungi sesama alumni. 
                                 </p>
                             </div>
                         </div>
@@ -72,14 +73,14 @@
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="./assets/img/logo2.png" alt="">
+                            <img class="img-fluid" src="img/logoUB.png" alt="">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
-                                <h1 class="h1">Our Mission</h1>
-                                <h3 class="h2">we care you</h3>
+                                <h1 class="h1">Fungsi aplikasi</h1>
+                                <h3 class="h2"></h3>
                                 <p>
-                                    making BengBengkel a means of automotive modification and sales of automotive-related products as well as increasing awareness of automotive modifications in Indonesia   
+                                    aplikasi ini akan digunakan untuk monitoring persebaran lulusan dan bahan evaluasi pembelajaran. 
                                 </p>
                             </div>
                         </div>
@@ -99,96 +100,161 @@
 
     <!-- Start Categories of The Month -->
     <section class="container py-5">
-        <div class="row text-center pt-3">
-            <div class="col-lg-6 m-auto">
-                <h1 class="h1">Events</h1>
-                <p>
-                  An event held by the company and can be attended by those of you who want to take part in the event or are looking for inspiration for motorbike modifications for your driving satisfaction
-                </p>
+        <div class="content">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-6" style="margin-bottom: 2rem">
+                  <div class="card">
+                    <div class="card-header border-0">
+                      <div class="d-flex justify-content-between">
+                        <h3 class="card-title">Umum</h3>
+                        {{-- <a href="javascript:void(0);">View Report</a> --}}
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="d-flex">
+                        {{-- <p class="d-flex flex-column">
+                          <span class="text-bold text-lg">820</span>
+                          <span>Visitors Over Time</span>
+                        </p>
+                        <p class="ml-auto d-flex flex-column text-right">
+                          <span class="text-success">
+                            <i class="fas fa-arrow-up"></i> 12.5%
+                          </span>
+                          <span class="text-muted">Since last week</span>
+                        </p> --}}
+                      </div>
+                      <!-- /.d-flex -->
+      
+                      <div class="position-relative mb-4">
+                        <canvas id="umum" height="200"></canvas>
+                      </div>
+      
+                      <div class="d-flex flex-row justify-content-end">
+                        
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.card -->
+      
+                  <!-- /.card -->
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                      <div class="card-header border-0">
+                        <div class="d-flex justify-content-between">
+                          <h3 class="card-title">Ilmu Ekonomi</h3>
+                          {{-- <a href="javascript:void(0);">View Report</a> --}}
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="d-flex">
+                          {{-- <p class="d-flex flex-column">
+                            <span class="text-bold text-lg">820</span>
+                            <span>Visitors Over Time</span>
+                          </p>
+                          <p class="ml-auto d-flex flex-column text-right">
+                            <span class="text-success">
+                              <i class="fas fa-arrow-up"></i> 12.5%
+                            </span>
+                            <span class="text-muted">Since last week</span>
+                          </p> --}}
+                        </div>
+                        <!-- /.d-flex -->
+        
+                        <div class="position-relative mb-4">
+                          <canvas id="ekonomi" height="200"></canvas>
+                        </div>
+        
+                        <div class="d-flex flex-row justify-content-end">
+                          
+                        </div>
+                      </div>
+                    </div>
+
+                    
+                    
+                    <!-- /.card -->
+        
+                    <!-- /.card -->
+                  </div>
+
+                  <div class="col-lg-6" >
+                    <div class="card">
+                      <div class="card-header border-0">
+                        <div class="d-flex justify-content-between">
+                          <h3 class="card-title">Akuntansi</h3>
+                          {{-- <a href="javascript:void(0);">View Report</a> --}}
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="d-flex">
+                          {{-- <p class="d-flex flex-column">
+                            <span class="text-bold text-lg">820</span>
+                            <span>Visitors Over Time</span>
+                          </p>
+                          <p class="ml-auto d-flex flex-column text-right">
+                            <span class="text-success">
+                              <i class="fas fa-arrow-up"></i> 12.5%
+                            </span>
+                            <span class="text-muted">Since last week</span>
+                          </p> --}}
+                        </div>
+                        <!-- /.d-flex -->
+        
+                        <div class="position-relative mb-4">
+                          <canvas id="akuntansi" height="200"></canvas>
+                        </div>
+        
+                        <div class="d-flex flex-row justify-content-end">
+                          
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="card">
+                          <div class="card-header border-0">
+                            <div class="d-flex justify-content-between">
+                              <h3 class="card-title">Manajemen</h3>
+                              {{-- <a href="javascript:void(0);">View Report</a> --}}
+                            </div>
+                          </div>
+                          <div class="card-body">
+                            <div class="d-flex">
+                              {{-- <p class="d-flex flex-column">
+                                <span class="text-bold text-lg">820</span>
+                                <span>Visitors Over Time</span>
+                              </p>
+                              <p class="ml-auto d-flex flex-column text-right">
+                                <span class="text-success">
+                                  <i class="fas fa-arrow-up"></i> 12.5%
+                                </span>
+                                <span class="text-muted">Since last week</span>
+                              </p> --}}
+                            </div>
+                            <!-- /.d-flex -->
+            
+                            <div class="position-relative mb-4">
+                              <canvas id="manajemen" height="200"></canvas>
+                            </div>
+            
+                            <div class="d-flex flex-row justify-content-end">
+                              
+                            </div>
+                          </div>
+                        </div>
+
+                        
+              <!-- /.row -->
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="#"><img src="./assets/img/g1.jpg" class="rounded-circle img-fluid border"></a>
-                <h5 class="text-center mt-3 mb-3">Vespa Classic</h5>
-                <p class="text-center"><a class="btn btn-success">Detail</a></p>
-            </div>
-            <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="#"><img src="./assets/img/motor3.jpg" class="rounded-circle img-fluid border"></a>
-                <h2 class="h5 text-center mt-3 mb-3">Honda CB</h2>
-                <p class="text-center"><a class="btn btn-success">Detail</a></p>
-            </div>
-            <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="#"><img src="./assets/img/g3.jpg" class="rounded-circle img-fluid border"></a>
-                <h2 class="h5 text-center mt-3 mb-3">Tour</h2>
-                <p class="text-center"><a class="btn btn-success">Detail</a></p>
-            </div>
-        </div>
+            <!-- /.container-fluid -->
+          </div>
     </section>
     <!-- End Categories of The Month -->
 
 
-    <!-- Start Featured Product -->
-    <section class="bg-light">
-        <div class="container py-5">
-            <div class="row text-center py-3">
-                <div class="col-lg-6 m-auto">
-                    <h1 class="h1">Our Client</h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card h-100">
-                        <a href="shop-single.html">
-                            <img src="./assets/img/qori.jpg" class="card-img-top " alt="..." >
-                        </a>
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between">
-                            </ul>
-                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">QoryGore</a>
-                            <p class="card-text">
-                                The youtuber that start career on music industry.
-                            </p>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card h-100">
-                        <a href="shop-single.html">
-                            <img src="./assets/img/gibran.jpg" class="card-img-top " alt="..." >
-                        </a>
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between">
-                            </ul>
-                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">Gibran Rakabuming Raka</a>
-                            <p class="card-text">
-                                Son of 7th Indonesian presiden.
-                            </p>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card h-100">
-                        <a href="shop-single.html">
-                            <img src="./assets/img/jefri.jpg" class="card-img-top" alt="..." >
-                        </a>
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between">
-                            </ul>
-                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">Jefry Nichol</a>
-                            <p class="card-text">
-                                Influencer, Actor, and Model.
-                            </p>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Featured Product -->
 
 
     @include('user.layout.footer')
@@ -200,6 +266,235 @@
     <script src="assets/js/templatemo.js"></script>
     <script src="assets/js/custom.js"></script>
     <!-- End Script -->
+
+
+    <!-- chart umum -->
+    @if(isset($data['kategori']) && $data['kategori'])
+    <script>
+        // Data untuk chart
+        var alumniData = {!! json_encode($data['kategori']) !!};
+
+        // Labels untuk chart
+        var labels = Object.keys(alumniData);
+        
+        // Data untuk chart
+        var data = Object.values(alumniData);
+
+        // Konfigurasi chart
+        var options = {
+            aspectRatio: 1,
+            plugins: {
+                legend: {
+                    position: 'right',
+                },
+            },
+        };
+
+        // Inisialisasi chart
+        var ctx = document.getElementById('umum').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Jumlah Alumni',
+                    data: data,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: options
+        });
+    </script>
+    @endif
+    <!-- chart umum -->
+
+        <!-- chart ekonomi -->
+        @if(isset($data['departemen']['Ilmu Ekonomi']) && $data['departemen']['Ilmu Ekonomi'])
+        <script>
+            // Data untuk chart
+            var alumniData = {!! json_encode($data['departemen']['Ilmu Ekonomi']) !!};
+    
+            // Labels untuk chart
+            var labels = Object.keys(alumniData);
+            
+            // Data untuk chart
+            var data = Object.values(alumniData);
+    
+            // Konfigurasi chart
+            var options = {
+                aspectRatio: 1,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                    },
+                },
+            };
+    
+            // Inisialisasi chart
+            var ctx = document.getElementById('ekonomi').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Jumlah Alumni',
+                        data: data,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: options
+            });
+                  
+        </script>
+        @endif
+        <!-- chart ekonomi -->
+
+                <!-- chart Akuntansi -->
+                @if(isset($data['departemen']['Ilmu Ekonomi']) && $data['departemen']['Akuntansi'])
+                <script>
+                    // Data untuk chart
+                    var alumniData = {!! json_encode($data['departemen']['Akuntansi']) !!};
+            
+                    // Labels untuk chart
+                    var labels = Object.keys(alumniData);
+                    
+                    // Data untuk chart
+                    var data = Object.values(alumniData);
+            
+                    // Konfigurasi chart
+                    var options = {
+                        aspectRatio: 1,
+                        plugins: {
+                            legend: {
+                                position: 'right',
+                            },
+                        },
+                    };
+            
+                    // Inisialisasi chart
+                    var ctx = document.getElementById('akuntansi').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Jumlah Alumni',
+                                data: data,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: options
+                    });
+
+                </script>
+                @endif
+                <!-- chart ekonomi -->
+
+                        <!-- chart ekonomi -->
+
+        @if(isset($data['departemen']['Ilmu Ekonomi']) && $data['departemen']['Manajemen'])
+        <script>
+            // Data untuk chart
+            var alumniData = {!! json_encode($data['departemen']['Manajemen']) !!};
+    
+            // Labels untuk chart
+            var labels = Object.keys(alumniData);
+            
+            // Data untuk chart
+            var data = Object.values(alumniData);
+    
+            // Konfigurasi chart
+            var options = {
+                aspectRatio: 1,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                    },
+                },
+            };
+    
+            // Inisialisasi chart
+            var ctx = document.getElementById('manajemen').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Jumlah Alumni',
+                        data: data,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: options
+            });
+        </script>
+        @endif
+        <!-- chart ekonomi -->
+
 </body>
 
 </html>

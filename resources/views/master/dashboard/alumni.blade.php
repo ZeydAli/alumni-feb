@@ -123,6 +123,7 @@ to get the desired effect
                 <table class="table table-striped table-valign-middle">
                   <thead>
                     <tr>
+                      <th>NIM</th>
                       <th>Name</th>
                       <th>Email</th>
                       <th>No. Handphone</th>
@@ -130,12 +131,14 @@ to get the desired effect
                       <th>Prodi</th>
                       <th>Angkatan</th>
                       <th>Pekerjaan</th>
+                      <th>Kategori Pekerjaan</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
                     @foreach($alumni as $alumnus)
                       <tr>
+                        <td>{{ $alumnus->nim }}</td>
                         <td>{{ $alumnus->name }}</td>
                         <td>{{ $alumnus->email }}</td>
                         <td>{{ $alumnus->no_hp ?? '-' }}</td>
@@ -143,6 +146,7 @@ to get the desired effect
                         <td>{{ $alumnus->prodi }}</td>
                         <td>{{ $alumnus->angkatan }}</td>
                         <td>{{ $alumnus->pekerjaan ?? '-' }}</td>
+                        <td>{{ $alumnus->kategori_pekerjaan ?? '-' }}</td>
                         <td>
                           <form action="/admin/alumni/{{ $alumnus->id }}" method="POST"
                             onsubmit="return confirm('Apakah anda yakin ingin menghapus Alumni ini?')">
@@ -187,11 +191,7 @@ to get the desired effect
 
   <!-- Main Footer -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.0.4
-    </div>
+
   </footer>
 </div>
 <!-- ./wrapper -->

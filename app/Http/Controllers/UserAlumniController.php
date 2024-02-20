@@ -6,12 +6,17 @@ use App\Models\Alumnus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class AlumnusController extends Controller
+class UserAlumniController extends Controller
 {
-
-
     public function index(Request $request)
     {
+
+        $countIlmuEkonomi = Alumnus::where('departemen', 'Ilmu Ekonomi')->count();
+        $countManajemen = Alumnus::where('departemen', 'Manajemen')->count();
+        $countAkuntansi = Alumnus::where('departemen', 'Akuntansi')->count();
+        $alumniByAngkatan = Alumnus::select('angkatan')->count();
+                               
+
         $search = $request->input('search');
         $angkatanSearch = $request->input('angkatanSearch');
         $query = Alumnus::query();
@@ -22,9 +27,7 @@ class AlumnusController extends Controller
                     ->orWhere('email', 'LIKE', '%' . $search . '%')
                     ->orWhere('departemen', 'LIKE', '%' . $search . '%')
                     ->orWhere('prodi', 'LIKE', '%' . $search . '%')
-                    ->orWhere('pekerjaan', 'LIKE', '%' . $search . '%')
-                    ->orWhere('nim', 'LIKE', '%' . $search . '%')
-                    ->orWhere('kategori_pekerjaan', 'LIKE', '%' . $search . '%');
+                    ->orWhere('pekerjaan', 'LIKE', '%' . $search . '%');
             });
         }
 
@@ -35,11 +38,15 @@ class AlumnusController extends Controller
         }
 
         $alumni = $query->paginate(10);
+        $data = [
+            'Ilmu Ekonomi' => $countIlmuEkonomi,
+            'Manajemen' => $countManajemen,
+            'Akuntansi' => $countAkuntansi,
+            'total' => $alumniByAngkatan
+        ];
         // $alumni = Alumnus::all();
-
-        // dd($alumni);
         
-        return view('master.dashboard.alumni', compact('alumni', 'search', 'angkatanSearch'));
+        return view('user.dashboard.about', compact('alumni', 'search', 'angkatanSearch', 'data'));
     }
 
     public function destroy($id)
@@ -57,5 +64,13 @@ class AlumnusController extends Controller
             return redirect()->back();
         }
         
+    }
+
+
+
+    public function hitung(){
+        $countIlmuEkonomi = Alumnus::where('departemen', 'Ilmu Ekonomi')->count();
+        $countManajemen = Alumnus::where('departemen', 'Manajemen')->count();
+        $countAkuntansi = Alumnus::where('departemen', 'Akuntansi')->count();
     }
 }

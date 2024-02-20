@@ -33,6 +33,7 @@ class BiodataController extends Controller
                 'prodi' => 'required',
                 'angkatan' => 'required|max:5',
                 'pekerjaan' => 'nullable|max:255',
+                'kategori_pekerjaan' => 'nullable|max:255',
             ]);
     
             // Simpan data baru ke basis data
@@ -45,6 +46,7 @@ class BiodataController extends Controller
             $alumnus->prodi = $validatedData['prodi'];
             $alumnus->angkatan = $validatedData['angkatan'];
             $alumnus->pekerjaan = $validatedData['pekerjaan'];
+            $alumnus->kategori_pekerjaan = $validatedData['kategori_pekerjaan'];
     
             $alumnus->save();
     

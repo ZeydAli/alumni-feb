@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('prodi');
             $table->integer('angkatan');
             $table->string('pekerjaan')->nullable();
+            $table->string('kategori_pekerjaan')->nullable();
             $table->timestamps();
         });
     }

@@ -46,6 +46,14 @@
     <form action="/register" method="post" style="border: : 5px">
           @csrf
         <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="NIM" name="nim">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Name" name="name">
           <div class="input-group-append">
             <div class="input-group-text">

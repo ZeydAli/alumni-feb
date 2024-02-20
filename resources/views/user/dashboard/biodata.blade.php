@@ -63,12 +63,12 @@
                 <input type="hidden" name="user_id" value="{{ $user->id}}">
                 <div class="row">
                     <div class="form-group col-md-6 mb-3">
-                        <label for="inputname">Name</label>
-                        <input type="text" class="form-control mt-1" id="name" name="name" placeholder="Nama" value="{{ old('name', $user->name) }}" required>
+                        <label for="inputname">Nama Lengkap</label>
+                        <input type="text" class="form-control mt-1" id="name" name="name" placeholder="Nama" value="{{ isset($biodata) ? old('name', $biodata->name) : old('name', $user->name) }}" required>
                     </div>
                     <div class="form-group col-md-6 mb-3">
                         <label for="email">Email</label>
-                        <input type="email" class="form-control mt-1" id="email" name="email" placeholder="Email" value="{{ old('email', $user->email) }}" required>
+                        <input type="email" class="form-control mt-1" id="email" name="email" placeholder="Email" value="{{ old('email', $user->email) }}" required readonly>
                     </div>
                 </div>
                 <div class="mb-3">
@@ -93,6 +93,17 @@
                         <option value="Ekonomi, Keuangan, dan Perbankan" {{ isset($biodata) ? (($biodata->prodi === 'Ekonomi, Keuangan, dan Perbankan') ? 'selected' : '') : '' }}>Ekonomi, Keuangan, dan Perbankan</option>
                         <option value="Kewirausahaan" {{ isset($biodata) ? (($biodata->prodi === 'Kewirausahaan') ? 'selected' : '') : '' }}>Kewirausahaan</option>
                         <option value="Akuntansi" {{ isset($biodata) ? (($biodata->prodi === 'Akuntansi') ? 'selected' : '') : '' }}>Akuntansi</option>
+
+                        <option value="Magister Ilmu Ekonomi" {{ isset($biodata) ? (($biodata->prodi === 'Magister Ilmu Ekonomi') ? 'selected' : '') : '' }}>Magister Ilmu Ekonomi</option>
+                        <option value="Magister Manajemen" {{ isset($biodata) ? (($biodata->prodi === 'Magister Manajemen') ? 'selected' : '') : '' }}>Magister Manajemen</option>
+                        <option value="Magister Akuntansi" {{ isset($biodata) ? (($biodata->prodi === 'Magister Akuntansi') ? 'selected' : '') : '' }}>Magister Akuntansi</option>
+                        <option value="Magister Manajemen Kampus Jakarta" {{ isset($biodata) ? (($biodata->prodi === 'Magister Manajemen Kampus Jakarta') ? 'selected' : '') : '' }}>Magister Manajemen Kampus Jakarta</option>
+
+                        <option value="Doktor Ilmu Ekonomi" {{ isset($biodata) ? (($biodata->prodi === 'Doktor Ilmu Ekonomi') ? 'selected' : '') : '' }}>Doktor Ilmu Ekonomi</option>
+                        <option value="Doktor Ilmu Akuntansi" {{ isset($biodata) ? (($biodata->prodi === 'Doktor Ilmu Akuntansi') ? 'selected' : '') : '' }}>Doktor Ilmu Akuntansi</option>
+                        <option value="Doktor Ilmu Manajemen" {{ isset($biodata) ? (($biodata->prodi === 'Doktor Ilmu Manajemen') ? 'selected' : '') : '' }}>Doktor Ilmu Manajemen</option>
+                        <option value="Doktor Manajemen Kampus Jakarta" {{ isset($biodata) ? (($biodata->prodi === 'Doktor Manajemen Kampus Jakarta') ? 'selected' : '') : '' }}>Doktor Manajemen Kampus Jakarta</option>
+                        <option value="Doktor Akuntansi Kanpus Jakarta" {{ isset($biodata) ? (($biodata->prodi === 'Doktor Akuntansi Kanpus Jakarta') ? 'selected' : '') : '' }}>Doktor Akuntansi Kanpus Jakarta</option>
                     </select>
                 </div>
                 <div class="mb-3">
@@ -102,6 +113,18 @@
                 <div class="mb-3">
                     <label for="pekerjaan">Pekerjaan Saat Ini</label>
                     <input type="text" class="form-control mt-1" id="pekerjaan" name="pekerjaan" placeholder="Pekerjaan Saat Ini" value="{{ isset($biodata) ? old('pekerjaan', $biodata->pekerjaan) : '' }}" autocomplete="off">
+                </div>
+                <div class="mb-3">
+                    <label for="kategori_pekerjaan">Kategori Pekerjaan</label>
+                    <select class="form-control mt-1" id="kategori_pekerjaan" name="kategori_pekerjaan" required>
+                        <option value="" disabled selected>Mohon Pilih</option>
+                        <option value="Institusi Pendidikan" {{ isset($biodata) ? (($biodata->kategori_pekerjaan === 'Institusi Pendidikan') ? 'selected' : '') : '' }}>Institusi Pendidikan</option>
+                        <option value="Wirausaha" {{ isset($biodata) ? (($biodata->kategori_pekerjaan === 'Wirausaha') ? 'selected' : '') : '' }}>Wirausaha</option>
+                        <option value="Start Up" {{ isset($biodata) ? (($biodata->kategori_pekerjaan === 'Start Up') ? 'selected' : '') : '' }}>Start Up</option>
+                        <option value="Perbankan Dan Keuangan" {{ isset($biodata) ? (($biodata->kategori_pekerjaan === 'Perbankan Dan Keuangan') ? 'selected' : '') : '' }}>Perbankan Dan Keuangan</option>
+                        <option value="Pemerintahan" {{ isset($biodata) ? (($biodata->kategori_pekerjaan === 'Pemerintahan') ? 'selected' : '') : '' }}>Pemerintahan</option>
+                        <option value="Lembaga Sosial Masyarakat" {{ isset($biodata) ? (($biodata->kategori_pekerjaan === 'Lembaga Sosial Masyarakat') ? 'selected' : '') : '' }}>Lembaga Sosial Masyarakat</option>
+                    </select>
                 </div>
                 
                 <div class="row">
