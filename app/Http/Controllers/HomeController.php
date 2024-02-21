@@ -59,32 +59,6 @@ class HomeController extends Controller
 
     $selectedDepartment = $_GET['departemen'] ?? null; // Ambil nilai departemen dari formulir (jika ada)
 
-        if ($selectedDepartment) {
-            // Departemen telah dipilih, Anda dapat menyesuaikan data berdasarkan departemen yang dipilih
-            switch ($selectedDepartment) {
-                case 'Ilmu Ekonomi':
-                    // Proses data departemen Ilmu Ekonomi
-                    $alumniData = $data['departemen']['Ilmu Ekonomi'] ?? null;
-                    break;
-                case 'Manajemen':
-                    // Proses data departemen Manajemen
-                    $alumniData = $data['departemen']['Manajemen'] ?? null;
-                    break;
-                case 'Akuntansi':
-                    // Proses data departemen Akuntansi
-                    $alumniData = $data['departemen']['Akuntansi'] ?? null;
-                    break;
-                default:
-                    // Departemen tidak valid, mungkin melakukan penanganan kesalahan atau menampilkan data umum
-                    $alumniData = null;
-                    break;
-            }
-        } else {
-            // Tidak ada departemen yang dipilih, mungkin menampilkan data umum
-            $alumniData = null;
-        }
-
-
     $data = [
         'angkatan' => $formattedAngkatan,
         'departemen' => $formattedDepartemen,

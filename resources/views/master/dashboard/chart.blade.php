@@ -114,6 +114,10 @@
                 <div class="card">
                   <div class="card-header border-0">
                     <div class="d-flex justify-content-between">
+                      <h3 class="card-title">Berdasarkan Departemen</h3>
+                      {{-- <a href="javascript:void(0);">View Report</a> --}}
+                    </div>
+                    <div class="d-flex justify-content-between">
                       {{-- <h3 class="card-title">Umum</h3> --}}
                     </div>
                   </div>
@@ -175,100 +179,98 @@
 
 
               <script>
-                
-                      document.addEventListener("DOMContentLoaded", function() {
-                        var departemenDropdown = document.getElementById('departemen');
-                        var alumniChart; // Variable to store the chart instance
-                        var defaultAlumniData = {!! json_encode($data['angkatan']) !!};
-
-                        departemenDropdown.addEventListener('change', function() {
-                            // Get the selected value from the dropdown
-                            var selectedValue = departemenDropdown.value;
-                            
-                            // Save the selected value to a JavaScript variable
-                            var selectedDepartemen = selectedValue;
-                            
-                            // Do something with the selected value, for example, log it
-                            console.log('Selected Departemen:', selectedDepartemen);
-
-                            var alumniData;
-                            @if(isset($data['angkatan']) && $data['angkatan'])        
-                            if (selectedDepartemen == "angkatan") {
+                document.addEventListener("DOMContentLoaded", function() {
+                    var departemenDropdown = document.getElementById('departemen');
+                    var alumniChart; // Variable to store the chart instance
+                    var defaultAlumniData = {!! json_encode($data['angkatan']) !!};
+                    var alumniData;
+            
+                    departemenDropdown.addEventListener('change', function() {
+                        // Get the selected value from the dropdown
+                        var selectedValue = departemenDropdown.value;
+                        
+                        // Save the selected value to a JavaScript variable
+                        var selectedDepartemen = selectedValue;
+                        
+                        // Do something with the selected value, for example, log it
+                        console.log('Selected Departemen:', selectedDepartemen);
+            
+                        // Set the alumniData based on the selected departemen
+                        switch (selectedDepartemen) {
+                            case "angkatan":
                                 alumniData = {!! json_encode($data['angkatan']) !!};
-                            }
-                            @elseif(isset($data['departemen']['Ilmu Ekonomi']) && $data['departemen']['Ilmu Ekonomi'])
-                            else if (selectedDepartemen == "Ilmu Ekonomi") {
-                                alumniData = {!! json_encode($data['departemen']['Ilmu Ekonomi']) !!};
-                            }
-                            @elseif(isset($data['departemen']['Akuntansi']) && $data['departemen']['Akuntansi'])
-                            else if (selectedDepartemen == "Akuntansi") {
-                                alumniData = {!! json_encode($data['departemen']['Akuntansi']) !!};
-                            }
-                            @elseif(isset($data['departemen']['Manajemen']) && $data['departemen']['Manajemen'])
-                            else if (selectedDepartemen == "Manajemen") {
-                                alumniData = {!! json_encode($data['departemen']['Manajemen']) !!};
-                            } else {
+                                break;
+                            case "Ilmu Ekonomi":
+                                alumniData = {!! isset($data['departemen']['Ilmu Ekonomi']) ? json_encode($data['departemen']['Ilmu Ekonomi']) : 'null' !!};
+                                break;
+                            case "Akuntansi":
+                                alumniData = {!! isset($data['departemen']['Akuntansi']) ? json_encode($data['departemen']['Akuntansi']) : 'null' !!};
+                                break;
+                            case "Manajemen":
+                                alumniData = {!! isset($data['departemen']['Manajemen']) ? json_encode($data['departemen']['Manajemen']) : 'null' !!};
+                                break;
+                            default:
                                 // Handle the case where selectedDepartemen is empty or not recognized
                                 // For example, you may set it to a default value
                                 alumniData = defaultAlumniData;
-                            }
-                            @endif
-
-                            // Update the chart with the new alumniData
-                            updateChart(alumniData);
-                        });
-
-                        // Initialize the chart with the default data
-                        updateChart(defaultAlumniData);
-
-                        function updateChart(data) {
-                            if (!alumniChart) {
-                                var ctx = document.getElementById('alumniChart').getContext('2d');
-                                alumniChart = new Chart(ctx, {
-                                    type: 'doughnut',
-                                    data: {
-                                        labels: Object.keys(data),
-                                        datasets: [{
-                                            label: 'Jumlah Alumni',
-                                            data: Object.values(data),
-                                            backgroundColor: [
-                                                'rgba(255, 99, 132, 0.2)',
-                                                'rgba(54, 162, 235, 0.2)',
-                                                'rgba(255, 206, 86, 0.2)',
-                                                'rgba(75, 192, 192, 0.2)',
-                                                'rgba(153, 102, 255, 0.2)',
-                                                'rgba(255, 159, 64, 0.2)'
-                                            ],
-                                            borderColor: [
-                                                'rgba(255, 99, 132, 1)',
-                                                'rgba(54, 162, 235, 1)',
-                                                'rgba(255, 206, 86, 1)',
-                                                'rgba(75, 192, 192, 1)',
-                                                'rgba(153, 102, 255, 1)',
-                                                'rgba(255, 159, 64, 1)'
-                                            ],
-                                            borderWidth: 1
-                                        }]
-                                    },
-                                    options: {
-                                        scales: {
-                                            yAxes: [{
-                                                ticks: {
-                                                    beginAtZero: true
-                                                }
-                                            }]
-                                        }
-                                    }
-                                });
-                            } else {
-                                alumniChart.data.labels = Object.keys(data);
-                                alumniChart.data.datasets[0].data = Object.values(data);
-                                alumniChart.update();
-                            }
+                                break;
                         }
+            
+                        // Update the chart with the new alumniData
+                        updateChart(alumniData);
                     });
-
+            
+                    // Initialize the chart with the default data
+                    updateChart(defaultAlumniData);
+            
+                    function updateChart(data) {
+                        if (!alumniChart) {
+                            var ctx = document.getElementById('alumniChart').getContext('2d');
+                            alumniChart = new Chart(ctx, {
+                                type: 'doughnut',
+                                data: {
+                                    labels: Object.keys(data),
+                                    datasets: [{
+                                        label: 'Jumlah Alumni',
+                                        data: Object.values(data),
+                                        backgroundColor: [
+                                            'rgba(255, 99, 132, 0.2)',
+                                            'rgba(54, 162, 235, 0.2)',
+                                            'rgba(255, 206, 86, 0.2)',
+                                            'rgba(75, 192, 192, 0.2)',
+                                            'rgba(153, 102, 255, 0.2)',
+                                            'rgba(255, 159, 64, 0.2)'
+                                        ],
+                                        borderColor: [
+                                            'rgba(255, 99, 132, 1)',
+                                            'rgba(54, 162, 235, 1)',
+                                            'rgba(255, 206, 86, 1)',
+                                            'rgba(75, 192, 192, 1)',
+                                            'rgba(153, 102, 255, 1)',
+                                            'rgba(255, 159, 64, 1)'
+                                        ],
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                beginAtZero: true
+                                            }
+                                        }]
+                                    }
+                                }
+                            });
+                        } else {
+                            alumniChart.data.labels = Object.keys(data);
+                            alumniChart.data.datasets[0].data = Object.values(data);
+                            alumniChart.update();
+                        }
+                    }
+                });
             </script>
+            
             
 
 

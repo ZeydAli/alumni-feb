@@ -265,7 +265,7 @@
 
 
     <!-- chart umum -->
-    @if(isset($data['kategori']) && $data['kategori'])
+
     <script>
         // Data untuk chart
         var alumniData = {!! json_encode($data['kategori']) !!};
@@ -317,12 +317,17 @@
             options: options
         });
     </script>
-    @endif
+
     <!-- chart umum -->
 
         <!-- chart ekonomi -->
         @if(isset($data['departemen']['Ilmu Ekonomi']) && $data['departemen']['Ilmu Ekonomi'])
         <script>
+
+          @php
+            $alumniData = $data['departemen']['Ilmu Ekonomi'] ?? null;
+              @endphp
+           @if(!is_null($alumniData))
             // Data untuk chart
             var alumniData = {!! json_encode($data['departemen']['Ilmu Ekonomi']) !!};
     
@@ -372,14 +377,18 @@
                 },
                 options: options
             });
-                  
+          @endif       
         </script>
         @endif
         <!-- chart ekonomi -->
 
                 <!-- chart Akuntansi -->
-                @if(isset($data['departemen']['Ilmu Ekonomi']) && $data['departemen']['Akuntansi'])
+                @if(isset($data['departemen']['Akuntansi']) && $data['departemen']['Akuntansi'])
                 <script>
+                            @php
+            $alumniData = $data['departemen']['Akuntansi'] ?? null;
+              @endphp
+                   @if(!is_null($alumniData))
                     // Data untuk chart
                     var alumniData = {!! json_encode($data['departemen']['Akuntansi']) !!};
             
@@ -429,15 +438,19 @@
                         },
                         options: options
                     });
-
+                    @endif
                 </script>
                 @endif
                 <!-- chart ekonomi -->
 
                         <!-- chart ekonomi -->
 
-        @if(isset($data['departemen']['Ilmu Ekonomi']) && $data['departemen']['Manajemen'])
+        @if(isset($data['departemen']['Manajemen']) && $data['departemen']['Manajemen'])
         <script>
+                    @php
+            $alumniData = $data['departemen']['Manajemen'] ?? null;
+              @endphp
+          @if(!is_null($alumniData))
             // Data untuk chart
             var alumniData = {!! json_encode($data['departemen']['Manajemen']) !!};
     
@@ -487,6 +500,7 @@
                 },
                 options: options
             });
+            @endif
         </script>
         @endif
         <!-- chart ekonomi -->
