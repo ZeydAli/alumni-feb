@@ -1,4 +1,23 @@
 @include('user.layout.header')
+
+<style>
+    .main-banner {
+  }
+  
+  .main-banner .left-content .thumb img {
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .main-banner .left-content .inner-content {
+    position: absolute;
+    left: 100px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  
+  </style>
 <body class="bg-light">
     @include('user.layout.navbar')
 
@@ -21,21 +40,24 @@
 
 
 
-    <section class="bg-success py-5">
-        <div class="container">
-            <div class="row align-items-center py-5">
-                <div class="col-md-8 text-white">
-                    <h1>Informasi Alumni</h1>
-                    <h4>
-                        Dihalaman ini anda dapat menemukan informasi alumni yang mungkin akan diperlukan untuk menghubungi alumni tersebut.
-                    </h4>
-                </div>
-                <div class="col-md-4">
-                    <img src="assets/img/about-hero.svg" alt="About Hero">
+        <div class="main-banner" id="top">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="" style="padding: 0px">
+                        <div class="left-content">
+                            <div class="thumb">
+                                <div class="inner-content">
+                                  <h1 class="h1 text-success"><b style="color: white">Informasi Alumni</b></h1>
+                                  <h3 class="h2" style="color: white">Dihalaman ini anda dapat menemukan informasi alumni yang mungkin akan diperlukan untuk menghubungi alumni tersebut.
+                                </h3>
+                                   </div>
+                                <img src="img/febub.jpg" alt="" style="height: 500px;">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
     <!-- Close Banner -->
 
     <!-- Start Section -->
