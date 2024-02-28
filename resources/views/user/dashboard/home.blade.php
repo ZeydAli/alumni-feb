@@ -98,8 +98,8 @@
     <section class="container py-5">
         <div class="content">
             <div class="container-fluid">
-              <div class="row">
-                <div class="col-lg-6" style="margin-bottom: 2rem">
+              <div class="d-flex justify-content-center">
+                <div class="col-lg-10" style="margin-bottom: 2rem">
                   <div class="card">
                     <div class="card-header border-0">
                       <div class="d-flex justify-content-between">
@@ -107,7 +107,7 @@
                         {{-- <a href="javascript:void(0);">View Report</a> --}}
                       </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body d-flex justify-content-center">
                       <div class="d-flex">
                         {{-- <p class="d-flex flex-column">
                           <span class="text-bold text-lg">820</span>
@@ -123,7 +123,7 @@
                       <!-- /.d-flex -->
       
                       <div class="position-relative mb-4">
-                        <canvas id="umum" height="200"></canvas>
+                        <canvas id="umum" style="height:500px; width:500px;"></canvas>
                       </div>
       
                       <div class="d-flex flex-row justify-content-end">
@@ -135,112 +135,7 @@
       
                   <!-- /.card -->
                 </div>
-                <div class="col-lg-6">
-                    <div class="card">
-                      <div class="card-header border-0">
-                        <div class="d-flex justify-content-between">
-                          <h3 class="card-title">Ilmu Ekonomi</h3>
-                          {{-- <a href="javascript:void(0);">View Report</a> --}}
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="d-flex">
-                          {{-- <p class="d-flex flex-column">
-                            <span class="text-bold text-lg">820</span>
-                            <span>Visitors Over Time</span>
-                          </p>
-                          <p class="ml-auto d-flex flex-column text-right">
-                            <span class="text-success">
-                              <i class="fas fa-arrow-up"></i> 12.5%
-                            </span>
-                            <span class="text-muted">Since last week</span>
-                          </p> --}}
-                        </div>
-                        <!-- /.d-flex -->
-        
-                        <div class="position-relative mb-4">
-                          <canvas id="ekonomi" height="200"></canvas>
-                        </div>
-        
-                        <div class="d-flex flex-row justify-content-end">
-                          
-                        </div>
-                      </div>
-                    </div>
-
-                    
-                    
-                    <!-- /.card -->
-        
-                    <!-- /.card -->
-                  </div>
-
-                  <div class="col-lg-6" >
-                    <div class="card">
-                      <div class="card-header border-0">
-                        <div class="d-flex justify-content-between">
-                          <h3 class="card-title">Akuntansi</h3>
-                          {{-- <a href="javascript:void(0);">View Report</a> --}}
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="d-flex">
-                          {{-- <p class="d-flex flex-column">
-                            <span class="text-bold text-lg">820</span>
-                            <span>Visitors Over Time</span>
-                          </p>
-                          <p class="ml-auto d-flex flex-column text-right">
-                            <span class="text-success">
-                              <i class="fas fa-arrow-up"></i> 12.5%
-                            </span>
-                            <span class="text-muted">Since last week</span>
-                          </p> --}}
-                        </div>
-                        <!-- /.d-flex -->
-        
-                        <div class="position-relative mb-4">
-                          <canvas id="akuntansi" height="200"></canvas>
-                        </div>
-        
-                        <div class="d-flex flex-row justify-content-end">
-                          
-                        </div>
-                      </div>
-                    </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="card">
-                          <div class="card-header border-0">
-                            <div class="d-flex justify-content-between">
-                              <h3 class="card-title">Manajemen</h3>
-                              {{-- <a href="javascript:void(0);">View Report</a> --}}
-                            </div>
-                          </div>
-                          <div class="card-body">
-                            <div class="d-flex">
-                              {{-- <p class="d-flex flex-column">
-                                <span class="text-bold text-lg">820</span>
-                                <span>Visitors Over Time</span>
-                              </p>
-                              <p class="ml-auto d-flex flex-column text-right">
-                                <span class="text-success">
-                                  <i class="fas fa-arrow-up"></i> 12.5%
-                                </span>
-                                <span class="text-muted">Since last week</span>
-                              </p> --}}
-                            </div>
-                            <!-- /.d-flex -->
-            
-                            <div class="position-relative mb-4">
-                              <canvas id="manajemen" height="200"></canvas>
-                            </div>
-            
-                            <div class="d-flex flex-row justify-content-end">
-                              
-                            </div>
-                          </div>
-                        </div>
+               
 
                         
               <!-- /.row -->
@@ -317,194 +212,6 @@
             options: options
         });
     </script>
-
-    <!-- chart umum -->
-
-        <!-- chart ekonomi -->
-        @if(isset($data['departemen']['Ilmu Ekonomi']) && $data['departemen']['Ilmu Ekonomi'])
-        <script>
-
-          @php
-            $alumniData = $data['departemen']['Ilmu Ekonomi'] ?? null;
-              @endphp
-           @if(!is_null($alumniData))
-            // Data untuk chart
-            var alumniData = {!! json_encode($data['departemen']['Ilmu Ekonomi']) !!};
-    
-            // Labels untuk chart
-            var labels = Object.keys(alumniData);
-            
-            // Data untuk chart
-            var data = Object.values(alumniData);
-    
-            // Konfigurasi chart
-            var options = {
-                aspectRatio: 1,
-                plugins: {
-                    legend: {
-                        position: 'right',
-                    },
-                },
-            };
-    
-            // Inisialisasi chart
-            var ctx = document.getElementById('ekonomi').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Jumlah Alumni',
-                        data: data,
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: options
-            });
-          @endif       
-        </script>
-        @endif
-        <!-- chart ekonomi -->
-
-                <!-- chart Akuntansi -->
-                @if(isset($data['departemen']['Akuntansi']) && $data['departemen']['Akuntansi'])
-                <script>
-                            @php
-            $alumniData = $data['departemen']['Akuntansi'] ?? null;
-              @endphp
-                   @if(!is_null($alumniData))
-                    // Data untuk chart
-                    var alumniData = {!! json_encode($data['departemen']['Akuntansi']) !!};
-            
-                    // Labels untuk chart
-                    var labels = Object.keys(alumniData);
-                    
-                    // Data untuk chart
-                    var data = Object.values(alumniData);
-            
-                    // Konfigurasi chart
-                    var options = {
-                        aspectRatio: 1,
-                        plugins: {
-                            legend: {
-                                position: 'right',
-                            },
-                        },
-                    };
-            
-                    // Inisialisasi chart
-                    var ctx = document.getElementById('akuntansi').getContext('2d');
-                    var myChart = new Chart(ctx, {
-                        type: 'doughnut',
-                        data: {
-                            labels: labels,
-                            datasets: [{
-                                label: 'Jumlah Alumni',
-                                data: data,
-                                backgroundColor: [
-                                    'rgba(255, 99, 132, 0.2)',
-                                    'rgba(54, 162, 235, 0.2)',
-                                    'rgba(255, 206, 86, 0.2)',
-                                    'rgba(75, 192, 192, 0.2)',
-                                    'rgba(153, 102, 255, 0.2)',
-                                    'rgba(255, 159, 64, 0.2)'
-                                ],
-                                borderColor: [
-                                    'rgba(255, 99, 132, 1)',
-                                    'rgba(54, 162, 235, 1)',
-                                    'rgba(255, 206, 86, 1)',
-                                    'rgba(75, 192, 192, 1)',
-                                    'rgba(153, 102, 255, 1)',
-                                    'rgba(255, 159, 64, 1)'
-                                ],
-                                borderWidth: 1
-                            }]
-                        },
-                        options: options
-                    });
-                    @endif
-                </script>
-                @endif
-                <!-- chart ekonomi -->
-
-                        <!-- chart ekonomi -->
-
-        @if(isset($data['departemen']['Manajemen']) && $data['departemen']['Manajemen'])
-        <script>
-                    @php
-            $alumniData = $data['departemen']['Manajemen'] ?? null;
-              @endphp
-          @if(!is_null($alumniData))
-            // Data untuk chart
-            var alumniData = {!! json_encode($data['departemen']['Manajemen']) !!};
-    
-            // Labels untuk chart
-            var labels = Object.keys(alumniData);
-            
-            // Data untuk chart
-            var data = Object.values(alumniData);
-    
-            // Konfigurasi chart
-            var options = {
-                aspectRatio: 1,
-                plugins: {
-                    legend: {
-                        position: 'right',
-                    },
-                },
-            };
-    
-            // Inisialisasi chart
-            var ctx = document.getElementById('manajemen').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Jumlah Alumni',
-                        data: data,
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: options
-            });
-            @endif
-        </script>
-        @endif
-        <!-- chart ekonomi -->
-
 </body>
 
 </html>
