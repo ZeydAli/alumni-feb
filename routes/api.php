@@ -20,5 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/chart', [ApiController::class, 'hitungalumni']);
-Route::get('/alumni', [AlumniApiController::class, 'index']);
+Route::get('/v1/chart', [ApiController::class, 'hitungalumni']);
+Route::get('/v1/alumni', [AlumniApiController::class, 'index']);
